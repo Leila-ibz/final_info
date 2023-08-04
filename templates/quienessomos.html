@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Begin Article
+================================================== -->
+<div class="container">
+	<div class="row">
+
+		<!-- Begin Fixed Left Share -->
+		<div class="col-md-2 col-xs-12">
+			<div class="share">
+				<p>
+					Redes:
+				</p>
+				<ul>
+					<li>
+                        <a target="_blank" href="https://www.instagram.com/blogtivo/">
+                          <img src="{% static 'img/instagram.png' %}" width="29" height="29" alt="Twitter Icon">
+                        </a>
+                      </li>
+                      <li>
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.wowthemes.net">
+                          <img src="{% static 'img/facebook.png' %}" width="29" height="29" alt="Facebook Icon">
+                        </a>
+                      </li>
+                      
+				
+			</div>
+		</div>
+		<!-- End Fixed Left Share -->
+
+		<!-- Begin Post -->
+		<div class="col-md-8 col-md-offset-2 col-xs-12">
+			<div class="mainheading">
+
+				<!-- Begin Top Meta -->
+				<div class="row post-top-meta">
+					<div class="col-md-2">
+						<a>
+							<img class="author-thumb" src="{% static 'img/logo1.png' %}" style="width: 100px; height: 50px;">
+
+						  </a>						  
+					</div>
+					<div class="col-md-10">
+						
+						<div style="text-align: center;">
+							<span class="author-description"><b>"¡Hola, amantes de la naturaleza y defensores del planeta! En BlogTivo, convertimos la conciencia ambiental en la magia de un mundo mejor."</b></span>
+						  </div>
+												  
+					</div>
+				</div>
+				<!-- End Top Menta -->
+
+				<div style="text-align: center;">
+					<h1 class="posttitle" style="font-size: 200%;">"BlogTivo: La Travesía Verde de Nuestro Equipo"</h1>
+				  </div>
+				  
+				  
+
+			</div>
+
+			<!-- Acá va a ir la imagen de muestra -->
+			<img class="featured-image img-fluid" src=  "{% static 'img/presentacion.gif' %}" alt="">
+			<!-- End Featured Image -->
+
+			<!-- Begin Post Content -->
+<div class="article-post" style="text-align: justify;">
+    <p>
+        Somos un grupo apasionado de amantes de la naturaleza y defensores del medio ambiente en la hermosa ciudad de Resistencia, Chaco. Aquí, en el corazón de la región chaqueña, hemos unido nuestras fuerzas para proteger y preservar nuestro entorno único y preciado.
+    </p>
+    <blockquote>
+        <b>¿Qué nos hace diferentes?</b> Somos el grupo de ambientalistas más intrépidos y curiosos que jamás hayas conocido. Creemos que cada pequeña acción cuenta y que, juntos, podemos marcar una gran diferencia en la protección y conservación de nuestro patrimonio natural.
+    </blockquote>
+
+    <p>
+        Hemos organizado exitosas jornadas de limpieza en áreas naturales, concientizando sobre la importancia de mantener nuestros ríos y parques libres de basura. También hemos colaborado en proyectos de reforestación para restaurar espacios verdes urbanos y promover la biodiversidad local.
+
+        Además, hemos impulsado campañas educativas sobre el cuidado de los humedales, concienciando sobre su fragilidad y su relevancia para el equilibrio ecológico. También hemos trabajado de la mano con instituciones educativas para llevar la temática ambiental a las aulas y así sembrar la semilla del amor por la naturaleza en las futuras generaciones.
+    </p>
+    <blockquote>
+        <b>¿Qué encontrarás en BlogTivo?</b> Desde guías prácticas para un estilo de vida más eco-consciente hasta relatos emocionantes de nuestras aventuras al aire libre, no hay límite para lo que compartiremos contigo. Únete a nuestra comunidad vibrante y forma parte de una tribu que está cambiando el mundo, un paso verde a la vez.
+    </blockquote>
+    <p>
+        Nuestras propuestas para el futuro incluyen expandir nuestras iniciativas de reforestación y restauración, creando corredores verdes que conecten diferentes áreas naturales de la ciudad.
+
+
+			
+
+		</div>
+		<!-- End Post -->
+
+	</div>
+</div>
+<!-- End Article
+================================================== -->
+
+<div class="hideshare"></div>
+
+<!-- Begin Related
+================================================== -->
+<div class="graybg">
+	<div class="container">
+		<div class="row listrecent listrelated">
+
+
+			<!-- begin post -->
+			<div class="col-md-4">
+				<div class="card">
+					<a href="post.html">
+					<img class="img-fluid img-thumb" src="assets/img/demopic/9.jpg" alt="">
+					</a>
+					
+				</div>
+			</div>
+			<!-- end post -->
+
+
+			
+
+		</div>
+	</div>
+</div>
+<!-- End Related Posts
+================================================== -->
+
+
+<!-- Begin AlertBar
+================================================== -->
+<div class="alertbar">
+	<div class="container text-center">
+		<img src="/static/img/logo.jpg" alt="logo"> &nbsp; ¡Un compromiso verde en crecimiento te espera! Mantente conectado con la naturaleza: <a href="#" class="btn subscribe">Contactanos</a>
+	</div>
+</div>
+<!-- End AlertBar
+================================================== -->
+
+{% endblock %}

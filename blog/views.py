@@ -7,3 +7,6 @@ from django.views.generic import TemplateView
 
 def Indexviews(request):
     return render(request, 'index.html')
+
+def quienes_somos_view(request):
+   return render(request, 'quienessomos.html')

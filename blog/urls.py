@@ -16,6 +16,8 @@ urlpatterns = [
     path('usuario/', include('apps.usuario.urls')),
     # path('', include('django.contrib.auth.urls')),
     # path('posts/', include('apps.posts.urls', namespace='crear_articulo')),
+    path('quienessomos/', views.quienes_somos_view, name='quienes_somos')
+
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
