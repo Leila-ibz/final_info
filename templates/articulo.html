@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+	<div class="mainheading">
+		<h1 class="sitetitle">Blog&middot;Tivo </h1>
+		<p class="lead" style="font-weight: bold; color: green;">
+			¿Eres colaborador? Deja tu eco-huella en el mundo, comparte tu voz en un artículo:
+		</p>
+		<a target="_blank" href= "{% url 'app.posts:crear_articulo' %}" class="btn follow" style="font-size: 1.2rem; padding: 10px 20px;">Publicar</a>
+	</div>
+	<style>
+		.section-title {
+			text-align: center;
+		}
+	</style>
+	<section class="featured-posts">
+		<div class="section-title">
+			<h2><span> Descubre los artículos publicados por nuestros colaboradores, una fuente inagotable de ideas para
+					transformar el mundo y vivir en armonía con la Tierra. ¡Encuentra aquí tu fuente de inspiración
+					verde y da rienda suelta a tu conciencia eco-activa!"</span></h2>
+		</div>
+	</section>
+
+	<!-- Begin Related -->
+
+	<style>
+		.img-thumb {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.col-md-4 {
+			margin-bottom: 35px;
+			/* Agregar un margen de 20 píxeles en la parte inferior de cada artículo completo */
+		}
+	</style>
+
+	<div class="graybg">
+		<div class="container">
+			<div class="row listrecent listrelated">
+				{% for articulo in articulos %}
+				<!-- begin post -->
+				<div class="col-md-4">
+					<div class="card"> 
+						<a href="{% url 'app.posts:leer_articulo' articulo.id %}">
+							<img src="{{ articulo.imagen.url }}" class="img-fluid img-thumb">
+						</a>
+						<div class="card-block">
+							<h2 class="card-title"><a href="">{{ articulo.titulo }}</a></h2>
+							<div class="metafooter">
+								<div class="wrapfooter">
+									<span class="meta-footer-thumb">
+										<style>
+											.author-thumb {
+												width: 80px;
+												/* Ajusta el valor según el tamaño deseado */
+												height: 80px;
+												/* Ajusta el valor según el tamaño deseado */
+											}
+										</style> 
+										<a href="{% url 'app.posts:leer_articulo' articulo.id %}"></a>
+										{% if articulo.avatar %}
+										<!-- Mostrar el avatar del artículo si existe -->
+										<img class="author-thumb" src="{{ articulo.avatar.url }}">
+										{% else %}
+										<!-- Mostrar una imagen predeterminada si no hay avatar -->
+										<img class="author-thumb" src="{% static 'avatar.jpg' %}">
+										{% endif %}
+
+									</span>
+									<span class="author-meta">
+										<span class="post-name"><a href="#">{{ articulo.nickname }}</a></span><br />
+										<span class="post-date">{{ articulo.fecha_publicacion }}</span><span
+											class="dot"></span><span class="post-read"></span>
+									</span>
+									<span class="post-read-more">
+										<a href="#" title="Editar Articulo">
+											<img class="svgIcon-use" src="{% static 'img/editar.jpg' %}" width="50"
+												height="50">
+										</a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end post -->
+
+
+
+
+
+
+				</div>
+				{% empty %}
+				<div style="text-align: center;">
+					<p>"El bosque susurra historias que merecen ser contadas. ¿Tienes una para compartir? Aun no hay
+						artículos. ¡Sube uno y deja que tu voz sea parte de la naturaleza!"</p>
+				</div>
+			</div>
+			{% endfor %}
+
+		</div>
+
+
+
+
+		<!-- Begin AlertBar
+================================================== -->
+		<div class="alertbar">
+			<div class="container text-center">
+				<img src="{% static 'img/logo.jpg' %}" alt="logo"> &nbsp; ¡Un compromiso verde en crecimiento te espera!
+				Mantente conectado con la naturaleza: <a href="{% url 'app.contacto:contacto' %}"
+					class="btn subscribe">Contactanos</a>
+			</div>
+		</div>
+		<!-- End AlertBar
+================================================== -->
+		{% endblock %}

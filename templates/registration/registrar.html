@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<main class="login-body" data-vide-bg="{% static 'img/login-bg1.mp4' %}">
+    <!-- Login Admin -->
+    <form class="form-default" method="POST">
+        <style>
+            .container.login-form {
+                width: 100%;
+                max-width: 900px; /* Puedes ajustar este valor según tus preferencias */
+                margin: 0 auto; /* Centrar el formulario horizontalmente */
+            }
+        </style>
+        <div class="container login-form" style="background-color: rgba(255, 255, 255, 0.5); padding: 10px;">
+            <h2 style="color: black;">Registro de usuarios:</h2>
+    
+            {% csrf_token %}
+            <div class="container fluid">
+                <table>{{ form }}</table>
+                <div class="form-input pt-30"><input type="submit" name="submit" value="Registrar"></div>
+    </form>
+    <!-- /end login form -->
+
+</main>
+
+
+{% endblock %}

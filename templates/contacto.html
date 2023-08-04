@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Contact Start -->
+<div class="container-xxl contact py-5">
+    <div class="container">
+        <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-6">Contáctanos</h1>
+
+            <p class="fs-5 fw-medium fst-italic text-primary">El poder del cambio comienza en tus palabras. Comparte tus
+                inquietudes ambientales y marquemos la diferencia juntos.</p>
+
+        </div>
+        <div class="row g-5 mb-5">
+            <!-- Resto del código -->
+            <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.3s">
+                <div class="btn-square mx-auto mb-3">
+                    <i class="fa fa-envelope fa-2x text-white"></i>
+                </div>
+                <p class="mb-2">Email:</p>
+                <p class="mb-0">Blogtivo23@gmail.com</p>
+            </div>
+            <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.4s">
+                <div class="btn-square mx-auto mb-3">
+                    <i class="fa fa-phone fa-2x text-white"></i>
+                </div>
+                <p class="mb-2">Telefono:</p>
+                <p class="mb-0">+012 345 67890</p>
+            </div>
+            <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.5s">
+                <div class="btn-square mx-auto mb-3">
+                    <i class="fa fa-map-marker-alt fa-2x text-white"></i>
+                </div>
+                <p class="mb-2">Av. 25 de Mayo 123</p>
+                <p class="mb-0">Resistencia, Chaco</p>
+            </div>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h3 class="mb-4">¿Listo para tomar acción por el planeta? </h3>
+                <p class="mb-4">¡No esperes más! Complete el formulario y únete a nuestras recomendaciones ambientales.
+                </p>
+
+                <form method="POST">
+                    <br>
+                    {% if messages %}
+                            {% for message in messages %}
+                                 <div class='message {{ message.tags}}'>{{ message }} </div>
+                            {% endfor %}
+                    {% endif %}
+                    <table>
+                        {% csrf_token %}
+                        {{ form }}
+                    </table>
+                                
+                    <div class="text-center">
+                        <input class="btn btn-primary rounded-pill py-3 px-5" type="submit" value="Enviar">
+                    </div>
+
+                </form>
+
+
+
+
+                <!-- Resto del código -->
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="h-100">
+                    <!-- URL del mapa con "Resistencia, Chaco, Argentina" -->
+                    <iframe class="w-100 rounded"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44979.24241583961!2d-58.98629308405237!3d-27.459619755938343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450c6c7c2c2151%3A0xb49ad215dbd6e3d2!2sResistencia%2C%20Chaco%2C%20Argentina!5e0!3m2!1sen!2sus!4v1627292071616!5m2!1sen!2sus"
+                        frameborder="0" style="height: 100%; min-height: 300px; border:0;" allowfullscreen=""
+                        aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

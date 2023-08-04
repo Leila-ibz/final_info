@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .mainheading {
+        display: flex;
+        align-items: center;
+        /* para que el texto aparezca estrecho al logo */
+    }
+
+    .logo2 {
+        /* No puedo poner esto en el css, por eso esta aca :c*/
+        width: 200px;
+        /* Ajusta el tamaño del logo */
+        height: auto;
+        /*  relación de aspecto original del logo */
+        margin-right: 10px;
+        /* Ajustar el margen derecho para separar el logo del texto */
+    }
+</style>
+
+<div class="container">
+    <div class="mainheading">
+        <img class="logo2" src="{% static 'img/logo1.png' %}" alt="Logo del Blog">
+        <div class="content">
+            <h1 class="sitetitle">Blog&middot;Tivo</h1>
+            <p class="lead">
+                Espacio virtual para inspirar y motivar a la acción
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- para centrar el texto  -->
+<style>
+    .section-title {
+        text-align: center;
+    }
+</style>
+
+<section class="featured-posts">
+    <div class="section-title">
+        <h2><span>¿Estás listo para inspirar o inspirarte? ¡Adelante, es hora de hacer la diferencia!</span>
+        </h2>
+    </div>
+</section>
+
+<style>
+    .container3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .profile-img {
+        max-width: 90%;
+        /* Ajusta el ancho máximo de la imagen */
+        max-height: 90%;
+        /* Ajusta la altura máxima de la imagen */
+    }
+</style>
+
+<div class="container3">
+    <img class="profile-img" src="static/portada.gif" alt="...">
+</div>
+
+<!-- About Section-->
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-xxl-8">
+                <div class="text-center my-5">
+                    <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Blog&middot;Tivo</span>
+                    </h2>
+
+                    <p class="lead fw-light mb-4">Somos un equipo apasionado de personas dedicadas a impulsar el
+                        cambio y promover el bienestar en nuestra comunidad. Con una sólida convicción de que
+                        juntos podemos marcar la diferencia, trabajamos incansablemente para abordar desafíos
+                        sociales y contribuir al desarrollo sostenible.</p>
+                    <p class="text-muted">A través de nuestro blog, buscamos inspirar y empoderar a las
+                        personas, brindando información relevante, historias inspiradoras y recursos útiles.
+                        Creemos en el poder de la información y la educación como catalizadores del cambio
+                        social.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="es-ar">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'img/favicon.png' %}">
+
+	<title>Blog&middot;Tivo</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Fonts -->
+	<link href="{% static 'assets/css/awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/css/righteous.css' %}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="{% static 'assets/css/mediumish.css' %}" rel="stylesheet">
+	<!--auxiliar-->
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/mediumish.css' %}">
+	<!--auxiliar2-->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!-- Google Web Fonts -->
+
+	<link href="{% static 'assets/css/swap.css' %}" rel="stylesheet">
+
+	<!-- Icon Font Stylesheet -->
+	<link href="{% static 'assets/css/css_all.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/css/bootstrap-icons.css' %}" rel="stylesheet">
+	<!-- Libraries Stylesheet -->
+
+	<link href="{% static 'assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+	<!--Auxiliar -->
+
+
+
+
+	<!-- Auxiliar  -->
+	<!-- <link rel="stylesheet" href="{% static 'assets/css2/bootstrap.min.css' %}"> -->
+	<!-- <link rel="stylesheet" href="{% static 'assets/css2/animated-headline.css' %}"> -->
+	<link rel="stylesheet" href="{% static 'assets/css2/style.css' %}">
+
+
+
+
+</head>
+
+<body>
+	<header>
+		<!-- Begin Nav ========== -->
+		<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="container">
+				<!-- Begin Logo -->
+				<a class="navbar-brand" href="{% url 'index' %}">
+
+					<img src="{% static 'img/logo.jpg' %}" alt="logo">
+				</a>
+				<!-- End Logo -->
+
+
+				<div class="collapse navbar-collapse"  id="navbarsExampleDefault" >
+				
+					<!-- Begin Menu -->
+					
+					<ul class="navbar-nav ml-auto" >
+						<li class="nav-item active" >
+							<a class="nav-link" href="#">¿Quiénes somos? <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'app.posts:articulos' %}">Articulos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'app.usuario:login' %}">Iniciar Sesión</a>
+						</li>
+						<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+								{% if user.is_authenticated %}
+								<p>Bienvenid@, {{ user.get_username }}.</p>
+								{% else %}
+								<p>Bienvenid@ Inicia Sesión</p>
+								{% endif %}
+							</a> <ul class="dropdown-menu">
+								<li><a class="dropdown-item"></a>
+									<p>
+										{% if user.is_authenticated %}
+									<form method="post" action="{% url 'app.usuario:logout' %}">
+										{% csrf_token %}
+										<button type="submit"
+											style="font-size: 19px; color: rgb(0, 0, 0); margin-right: 20px; background: none; border: none; cursor: pointer;">Cerrar
+											Sesión</button>
+									</form>
+									{% else %}
+									<a href="#" style="font-size: 10px; color: rgb(0, 0, 0); margin-right: 20px;">.</a>
+									{% endif %}
+									<p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<!-- End Menu -->
+
+				</div>
+			</div>
+		</nav>
+		<!-- End Nav ================================================== -->
+	</header>
+	<main>
+
+		{% block content %}
+
+		{% endblock %}
+
+	</main>
+	<!-- Footer-->
+	<!-- Begin Footer
+	================================================== -->
+	<footer class="footer">
+		<p class="pull-left">
+			Copyright &copy; 2023 BlogTivo
+		</p>
+	</footer>
+	<!-- End Footer ================================================== -->
+	<!-- Bootstrap core JavaScript ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/tether.min.js' %}"
+		integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+		crossorigin="anonymous"></script>
+	<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/js/ie10-viewport-bug-workaround.js' %}"></script>
+	<script src="{% static 'assets/js/mediumish.js' %}"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{% static 'assets/js/bootstrap2.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery2.min.js' %}"></script>
+	<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'assets/lib/wow/wow.min.js' %}"></script>
+	<script src="{% static 'assets/lib/easing/easing.min.js' %}"></script>
+	<script src="{% static 'assets/lib/waypoints/waypoints.min.js' %}"></script>
+	<script src="{% static 'assets/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+	<!-- Template Javascript -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+
+	<script src="{% static 'assets/js/menu.js' %}"></script>
+
+	<!-- Auxiliar -->
+	<script src="{% static 'assets/js2/popper.min.js' %}"></script>
+	<script src="{% static 'assets/js2/bootstrap.min.js' %}"></script>
+	<!-- Jquery Mobile Menu -->
+	<script src="{% static 'assets/js2/jquery.slicknav.min.js' %}"></script>
+
+	<!-- Video bg -->
+	<script src="{% static 'assets/js2/jquery.vide.js' %}"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+	<script src="{% static 'assets/js2/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'assets/js2/slick.min.js' %}"></script>
+	<!-- One Page, Animated-HeadLin -->
+	<script src="{% static 'assets/js2/wow.min.js' %}"></script>
+	<script src="{% static 'assets/js2/animated.headline.js' %}"></script>
+	<script src="{% static 'assets/js2/jquery.magnific-popup.js' %}"></script>
+
+	<!-- Date Picker -->
+	<script src="{% static 'assets/js2/gijgo.min.js' %}"></script>
+	<!-- Nice-select, sticky -->
+	<script src="{% static 'assets/js2/jquery.nice-select.min.js' %}"></script>
+	<script src="{% static 'assets/js2/jquery.sticky.js' %}"></script>
+	<!-- Progress -->
+	<script src="{% static 'assets/js2/jquery.barfiller.js' %}"></script>
+
+	<!-- counter , waypoint,Hover Direction -->
+	<script src="{% static 'assets/js2/jquery.counterup.min.js' %}"></script>
+	<script src="{% static 'assets/js2/waypoints.min.js' %}"></script>
+	<script src="{% static 'assets/js2/jquery.countdown.min.js' %}"></script>
+	<script src="{% static 'assets/js2/hover-direction-snake.min.js' %}"></script>
+
+	<!-- contact js -->
+	<script src="{% static 'assets/js2/contact.js' %}"></script>
+	<script src="{% static 'assets/js2/jquery.form.js' %}"></script>
+	<script src="{% static 'assets/js2/jquery.validate.min.js' %}"></script>
+	<script src="{% static 'assets/js2/mail-script.js' %}"></script>
+	<script src="{% static 'assets/js2/jquery.ajaxchimp.min.js' %}"></script>
+
+	<!-- Jquery Plugins, main Jquery -->
+	<script src="{% static 'assets/js2/plugins.js' %}"></script>
+	<script src="{% static 'assets/js2/main.js' %}"></script>
+</body>
+
+</html>

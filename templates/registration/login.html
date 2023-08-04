@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} ----------------------------------- {% endcomment %}
+
+
+<main class="login-body" data-vide-bg="{% static 'img/login-bg1.mp4' %}">
+    <!-- Login Admin -->
+    <form class="form-default" method="POST">
+        <div class="container login-form" style="max-width: 2000px !important; background-color: rgba(255, 255, 255, 0.5); padding: 90px; margin-top: 20px;">
+            <!-- logo-login -->
+            <div class="logo-login">
+                <a><img src="{% static 'img/escudo.jpg' %}" alt="" style="width: 200px; height: 200px;"></a>
+            </div>
+            <br><br/>
+            <p><h2 style="color: black;">Iniciar Sesión:</h2><p>
+                   
+                {% csrf_token %}
+                <div class="container fluid">
+                  <table>{{ form }}</table>       
+                <div class="form-input pt-30">
+                    <input type="submit" name="submit" value="Iniciar Sesión"></div>
+                        <a style="color: black;" href="{% url 'app.usuario:registrar' %}"> ¿Todavía no está registrado?.<span style="text-decoration: underline;"> Registrate</span></a></div>
+            
+        </form>
+        <!-- /end login form -->
+    </main> 
+    {% endblock %}
+    
