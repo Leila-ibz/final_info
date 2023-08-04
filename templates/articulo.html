@@ -2,24 +2,77 @@
 {% load static %}
 {% block content %}
 
+<!-- Script para seleccionar categoría |-->
+
+
 <div class="container">
 	<div class="mainheading">
 		<h1 class="sitetitle">Blog&middot;Tivo </h1>
 		<p class="lead" style="font-weight: bold; color: green;">
 			¿Eres colaborador? Deja tu eco-huella en el mundo, comparte tu voz en un artículo:
 		</p>
-		<a target="_blank" href= "{% url 'app.posts:crear_articulo' %}" class="btn follow" style="font-size: 1.2rem; padding: 10px 20px;">Publicar</a>
+		<a target="_blank" href="{% url 'app.posts:crear_articulo' %}" class="btn follow"
+			style="font-size: 1.2rem; padding: 10px 20px;">Publicar</a>
+
 	</div>
 	<style>
-		.section-title {
-			text-align: center;
+		/* Agrega un contenedor para flexbox */
+		.flex-container {
+			display: flex;
+			justify-content: space-between;
+			/* Distribuir elementos a los extremos */
+			align-items: flex-start;
+			/* Alinear elementos al inicio verticalmente */
 		}
+
+		/* Estilo para el menú de categorías */
+		.nav-categorias {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			margin-top: -10px;
+			/* Ajusta este valor según necesites */
+		}
+
+		.nav-categorias li {
+			display: inline-block;
+		}
+
+		/* Resto de estilos para el menú de categorías */
+		/* ... */
+
+		/* Estilo para el texto justificado a la izquierda */
+		.texto-izquierda {
+			text-align: left;
+		}
+
+		/* Resto de estilos para el texto */
+		/* ... */
 	</style>
 	<section class="featured-posts">
-		<div class="section-title">
-			<h2><span> Descubre los artículos publicados por nuestros colaboradores, una fuente inagotable de ideas para
+		<div class="section-title flex-container">
+			<h2 class="texto-izquierda">
+				<span> Descubre los artículos publicados por nuestros colaboradores, una fuente inagotable de ideas para
 					transformar el mundo y vivir en armonía con la Tierra. ¡Encuentra aquí tu fuente de inspiración
-					verde y da rienda suelta a tu conciencia eco-activa!"</span></h2>
+					verde y
+					da rienda suelta a tu conciencia eco-activa!"</span>
+			</h2>
+			<div>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown">
+						<p>Categorías</p>
+					</a>
+					<ul class="dropdown-menu" style="right: 0; left: auto;">
+						{% for opcion in opciones_dropdown %}
+						<li>
+							<a class="dropdown-item" href='/posts/articulos?categoria_id={{ opcion.id }}'>
+								{{ opcion.nombre }}
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+			</div>
 		</div>
 	</section>
 
@@ -38,13 +91,16 @@
 		}
 	</style>
 
+	<!--Evento onchange para cada vez que el usuario selecciona una opcion del menu categorías-->
+
+
 	<div class="graybg">
 		<div class="container">
 			<div class="row listrecent listrelated">
 				{% for articulo in articulos %}
 				<!-- begin post -->
 				<div class="col-md-4">
-					<div class="card"> 
+					<div class="card">
 						<a href="{% url 'app.posts:leer_articulo' articulo.id %}">
 							<img src="{{ articulo.imagen.url }}" class="img-fluid img-thumb">
 						</a>
@@ -60,7 +116,7 @@
 												height: 80px;
 												/* Ajusta el valor según el tamaño deseado */
 											}
-										</style> 
+										</style>
 										<a href="{% url 'app.posts:leer_articulo' articulo.id %}"></a>
 										{% if articulo.avatar %}
 										<!-- Mostrar el avatar del artículo si existe -->

@@ -47,10 +47,11 @@
 								</span>
 								<span class="author-meta">
 									<span class="post-name"><a href="author.html">{{ articulos.nickname }}</a></span><br />
-									<span class="post-date">{{ articulos.publicado | date:"d/m/Y"}} </span></span><span
-									class="post-read"></span>
+									<span class="post-date">{{ articulos.publicado | date:"d/m/Y"}} </span></span> <span class="post-read"></span>
+									
 								<br>
-								<a class="btn follow float-left" style="font-size: 0.7rem;"> {{ articulos.categoria.nombre }}</a>
+								<a target="_blank" style="display: inline-block; padding: 5px 10px; background-color: #ccc; color: #000; text-decoration: none; border: none;">{{ articulos.categoria.nombre }}</a>
+								<!--<a class="btn follow float-left" style="font-size: 0.7rem;"> {{ articulos.categoria.nombre }}</a>-->
 								<br>
 								</span>
 								<br><br>
