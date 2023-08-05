@@ -1,0 +1,60 @@
+/* custom-styles.css */
+/* custom-styles.css */
+
+/* Anula las reglas de .dropdown-toggle::after de bootstrap.min.css */
+.custom-dropdown .custom-dropdown-toggle::after {
+    /* border-top: 0.3em solid transparent; */
+    border-bottom: none; /* Anula la propiedad de Bootstrap */
+}
+
+.custom-dropdown-toggle {
+    /* border: 2px solid #ccc; */
+    padding: 0px 0px;
+    font-size: 20px;
+    /* cursor: pointer; */
+    height: 15px; /* Ajusta la altura según sea necesario */
+    font-size: 20px;
+}
+
+.custom-dropdown-menu {
+    border: 2px solid #19dc57;
+    border-top: none;
+    box-shadow: none;
+    padding: 0;
+    width: 0%;
+}
+
+.custom-dropdown-text {
+    margin: 0;
+}
+
+.custom-dropdown-content {
+    padding: 15px;
+}
+
+.custom-dropdown-button {
+    
+    color: rgb(0, 228, 12);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Adjust the position of the dropdown-toggle arrow */
+
+.custom-dropdown-toggle::after {
+    display: inline-block;
+  
+    height: 1000;
+    margin-top: -55px; /* Adjust this value as needed */
+    margin-left: 9.5em; /* Aumenta este valor para mover a la derecha */
+    margin-right: -0.3em; /* Ajusta este valor para mantener el espacio total */
+    vertical-align: middle;
+    content: "";
+    border-top: 0.4em solid;
+    border-right: 0.3em solid transparent;
+    border-left: 0.3em solid transparent;
+}
+
+
+

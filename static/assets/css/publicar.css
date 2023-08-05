@@ -1,0 +1,145 @@
+/* Reset de estilos para todos los elementos */
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Anular estilos específicos de Bootstrap */
+.custom-form [role=button],
+.custom-form a,
+.custom-form area,
+.custom-form button,
+.custom-form input,
+.custom-form label,
+.custom-form select,
+.custom-form summary,
+.custom-form textarea {
+    -ms-touch-action: initial;
+    touch-action: initial;
+    /* Agrega otros estilos específicos según sea necesario */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  /* Estilos para el botón de envío */
+  div.custom-publicar-form-container button[type="submit"] {
+    background-color: #007bff !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+  }
+  
+
+/* Estilos para el contenedor personalizado del formulario */
+div.custom-publicar-form-container form  {
+    background-color: #f0f0f0 !important;
+    padding: 20px !important;
+    border: 1px solid #ccc !important;
+    /* Agrega más estilos según tus necesidades */
+  }
+  
+  
+  div.custom-publicar-form-container {
+    /* Estilos para el contenedor personalizado del formulario */
+    background-color: #f0f0f0 !important;
+  }
+
+
+  .id_categoria.form-select {
+    border: 2px solid #ccc !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+    height: 50px !important;
+    font-size: 18px !important;
+    width: 2px; /* Ajusta el ancho según tus necesidades */
+    } 
+    /* Otros estilos según sea necesario */
+    
+  
+/* Estilos para el menú desplegable */
+.form-select {
+    border: 0.5px solid #ccc;
+    padding: 10px 5px;
+    /* cursor: pointer; */
+    height: 5px;
+    font-size: 15px;
+    /* background-image: url('ruta-de-tu-icono-de-flecha.png'); */
+    /* background-position: right center; */
+    /* background-repeat: no-repeat; */
+    padding-right: 300px; /* Ajusta según el tamaño de tu flecha */
+
+
+    border: 2px solid #76c697;
+    border-top: none;
+    box-shadow: none;
+    width: auto;
+    /* right: auto; */
+    /* position: relative; */
+    left: 5px;
+  }
+  
+  /* Agrega los estilos para el menú desplegable */
+.form-select.custom-select::after {
+    display: inline-block;
+    margin-top: -10px; /* Ajusta esta distancia según sea necesario */
+    margin-left: 180px; /* Aumenta este valor para mover a la derecha */
+    vertical-align: middle;
+    content: "";
+    border-top: 0.4em solid;
+    border-right: 0.3em solid transparent;
+    border-left: 0.3em solid transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  border: 2px solid #ccc;
+  padding: 10px 20px;
+  cursor: pointer;
+  height: 50px; /* Ajusta la altura según sea necesario */
+  font-size: 18px;
