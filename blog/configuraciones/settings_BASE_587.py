@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Django settings for blog project.
 
@@ -12,26 +11,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
-import os
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
-env.read_env()
-=======
-import environ
 import os 
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
-env.read_env()
-
->>>>>>> c86a5260db82f77c3294ae66edb2c7c253215df7
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -45,18 +30,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'usuario.Usuario'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smpt.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'rockneko@hotmail.es'
-EMAIL_HOST_PASSWORD = 'auqgeau7/'
-
-SITE_NAME = 'Blog.Tivo'
-
-
-
 
 # Application definition
 
@@ -109,11 +82,11 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env("DATABASES_DEFAULT_NAME"),
-        'USER': env("DATABASES_DEFAULT_USER"),
-        'PASSWORD': env("DATABASES_DEFAULT_PASSWORD"),
-        'HOST': env("DATABASES_DEFAULT_HOST"),
-        'PORT': env("DATABASES_DEFAULT_PORT")
+        'NAME': 'blog',
+        'USER': 'root',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 
@@ -140,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-ar'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 

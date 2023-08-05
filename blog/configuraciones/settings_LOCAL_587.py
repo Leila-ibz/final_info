@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Django settings for blog project.
 
@@ -19,19 +18,6 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 env.read_env()
-=======
-import environ
-import os 
-
-from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = environ.Env()
-env.read_env()
-
->>>>>>> c86a5260db82f77c3294ae66edb2c7c253215df7
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
