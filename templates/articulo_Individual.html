@@ -15,7 +15,12 @@
 					<a href="author.html">
 
 						<!--ACA VA LA IMAGEN DEL POST -->
-						<img class="img-fluid img-thumb" src="{{ articulos.imagen.url }}" alt="">
+						{% if articulos.imagen  %}
+							<img src="{{ articulos.imagen.url }}" class="img-fluid img-thumb">
+						{% else %}
+							<img src="{% static '6.jpg' %}" class="img-fluid img-thumb">	
+						{% endif %}
+
 					</a>
 					<div class="card-block">
 						<h2 class="card-title"> {{ articulos.titulo | capfirst }}</h2>
@@ -87,9 +92,8 @@
 			<!-- End Author Posts ================================================== -->
 			<center>
 				<div class="container-fluid" style="margin-bottom: 20px;"></div>
-					
 				<div class="container-fluid" style="margin-bottom: 20px;"></div>
-					{% for comentario in comentarios %}
+					{% for comentario in articulos.comentarios.all %}
 						<table>{{ comentario.usuario }} - {{ comentario.fecha }}</table>
 					<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
 						<p>{{ comentario.texto }}</p>
@@ -105,6 +109,7 @@
 					{% csrf_token %}
 				{% if user.is_authenticated %}
 					<h2>Deja tu comentario</h2>
+
 					<form method="POST">
 						{% csrf_token %}
 						{{ form.as_p }}

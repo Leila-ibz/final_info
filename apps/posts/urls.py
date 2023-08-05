@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 from django.urls import path
 from django.urls import reverse_lazy
 
+
+
 from . import views
 from .views import *
 
@@ -14,6 +16,8 @@ app_name= 'app.posts'
 urlpatterns = [
     path('articulos/', ArticuloView.as_view(), name='articulos'),
     path('leer_articulo/<int:id>', views.leer_articulo, name='leer_articulo'),
+    # path('leer_articulo/<int:id>', views.PostDetailView.as_view(), name='leer_articulo'),
+    
     path('crear_articulo/', views.crear_articulo, name='crear_articulo'),
     path('articulos/categoria', CategoriaCreateView.as_view(), name= 'crear_categoria'),
     path('categoria/', CategoriaListView.as_view(), name='categoria_list'),
