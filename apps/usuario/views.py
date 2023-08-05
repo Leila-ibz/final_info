@@ -29,6 +29,9 @@ class LoginUsuario(LoginView):
         messages.success(self.request, 'INICIO DE SESIÓN EXITOSO. ¡BIENVENID@!')
         return reverse('app.posts:articulos') 
     
+#Recu pass
+
+
 
 
 
