@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center>
+<div class="container-fluid" style="margin: 200px">
+    <h1>Categorías</h1>
+    <br>
+
+    <ul>
+        {% for categoria in categorias %}
+            <li>{{ categoria.nombre }}
+                (<a style="color: black;" href="{% url 'app.posts:categoria_delete' pk=categoria.pk %}">Eliminar</a></li>
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+</center>
+{% endblock %}
