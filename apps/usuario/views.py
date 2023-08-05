@@ -12,11 +12,17 @@ from django.contrib.auth.models import Group
 
 # Create your views here.
 
+from django.contrib.messages import get_messages
+
 class RegistrarUsuario(CreateView):
     template_name = 'registration/registrar.html'
     form_class = RegistroUsuarioForm
 
     def form_valid(self, form):
+        # Limpiar los mensajes previos
+        storage = get_messages(self.request)
+        for message in storage:
+            pass
         messages.success(self.request, 'REGISTRO EXITOSO. POR FAVOR INICIA SESIÓN.')
         form.save()
         return redirect('app.usuario:login')
@@ -27,7 +33,7 @@ class LoginUsuario(LoginView):
     
 
     def get_success_url(self):
-        messages.success(self.request, 'INICIO DE SESIÓN EXITOSO. ¡BIENVENID@!')
+        # messages.success(self.request, 'INICIO DE SESIÓN EXITOSO. ¡BIENVENID@!')
         return reverse('app.posts:articulos') 
     
 
@@ -54,7 +60,7 @@ class LogoutUsuario(LogoutView):
     # template_name = 'registration/logout.html'
 
     def get_success_url(self):
-        messages.success(self.request, '¡SU CUENTA HA SIDO CERRADA CORRECTAMENTE! ¡HASTA LUEGO!')
+        # messages.success(self.request, '¡SU CUENTA HA SIDO CERRADA CORRECTAMENTE! ¡HASTA LUEGO!')
 
         return reverse('index')
     

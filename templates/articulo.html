@@ -63,26 +63,28 @@
 	<section class="featured-posts">
 		<div class="section-title flex-container">
 			<h2 class="texto-izquierda">
-				<span> Descubre los artículos publicados por nuestros colaboradores, una fuente inagotable de ideas para
-					transformar el mundo y vivir en armonía con la Tierra. ¡Encuentra aquí tu fuente de inspiración
-					verde y
-					da rienda suelta a tu conciencia eco-activa!"</span>
+				<span> Descubre los artículos publicados por nuestros colaboradores.
+					<br>
+					¡Encuentra aquí tu fuente de inspiración verde y
+					da rienda suelta
+					<br> a tu conciencia eco-activa!"</span>
 			</h2>
 			<div>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown">
+				<li class="nav-item dropdown custom-dropdown custom-categorias">
+					<a class="nav-link dropdown-toggle custom-dropdown-toggle" data-toggle="dropdown">
 						<p>Categorías</p>
 					</a>
-					<ul class="dropdown-menu" style="right: 0; left: auto;">
+					<ul class="dropdown-menu custom-dropdown-menu">
 						{% for opcion in opciones_dropdown %}
 						<li>
-							<a class="dropdown-item" href='/posts/articulos?categoria_id={{ opcion.id }}'>
+							<a class="dropdown-item custom-dropdown-item" href='/posts/articulos?categoria_id={{ opcion.id }}'>
 								{{ opcion.nombre }}
 							</a>
 						</li>
 						{% endfor %}
 					</ul>
 				</li>
+				
 			</div>
 		</div>
 	</section>
@@ -92,12 +94,12 @@
 	<style>
 		.img-thumb {
 			width: 100%;
-			height: 200px;
+			height: 300px;
 			object-fit: cover;
 		}
 
 		.col-md-4 {
-			margin-bottom: 35px;
+			margin-bottom: 40px;
 			/* Agregar un margen de 20 píxeles en la parte inferior de cada artículo completo */
 		}
 	</style>
@@ -113,7 +115,12 @@
 				<div class="col-md-4">
 					<div class="card">
 						<a href="{% url 'app.posts:leer_articulo' articulo.id %}">
-							<img src="{{ articulo.imagen.url }}" class="img-fluid img-thumb">
+							{% if articulo.imagen  %}
+								<img src="{{ articulo.imagen.url }}" class="img-fluid img-thumb">
+							{% else %}
+								<img src="{% static '6.jpg' %}" class="img-fluid img-thumb">	
+							{% endif %}
+							
 						</a>
 						<div class="card-block">
 							<h2 class="card-title"><a href="">{{ articulo.titulo }}</a></h2>

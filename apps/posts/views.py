@@ -11,6 +11,9 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 # Create your views here.
 #asd
 
@@ -37,11 +40,21 @@ def existe_articulo(id):
 
 def leer_articulo(request, id):
     articulo = Articulo.objects.filter(id = id).first()
-        
+    
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.usuario = request.user
+            comentario.posts_id = id
+            comentario.save()
+            return HttpResponseRedirect(request.path_info)
 
-
+    else:
+        form =  ComentarioForm() 
     context = {
         'articulos': articulo,
+        "form" : form
     }
 
     return render (request, 'articulo_individual.html', context)
@@ -73,10 +86,12 @@ def crear_articulo(request):
         if form.is_valid():
             articulo = form.save()
 
-        return render (request, 'articulo.html') 
+            return HttpResponseRedirect(reverse("app.posts:leer_articulo", args=[articulo.id]))
     else:
         form = ArticuloForm()
-        return render(request, 'publicar.html', {'form' : form})        
+        return render(request, 'publicar.html', {'form' : form})       
+
+ 
 
 
 
@@ -90,8 +105,10 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = ComentarioForm() 
+
         context['comentarios'] = Comentario.objects.filter(posts_id=self.kwargs['id'])
         return context
+    
     def post(self, request, *args, **kwargs):
         form = ComentarioForm(request.POST)
         if form.is_valid():
