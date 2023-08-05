@@ -21,7 +21,11 @@
                   <table>{{ form }}</table>       
                 <div class="form-input pt-30">
                     <input type="submit" name="submit" value="Iniciar Sesión"></div>
-                        <a style="color: black;" href="{% url 'app.usuario:registrar' %}"> ¿Todavía no está registrado?.<span style="text-decoration: underline;"> Registrate</span></a></div>
+                        <a style="color: black;" href="{% url 'app.usuario:registrar' %}"> ¿Todavía no está registrado?.<span style="text-decoration: underline;"> Registrate</span></a>
+                        <br>
+                        <br>
+                        <a style="color: black;" href="{% url 'app.usuario:registrar' %}"> ¿Has olvidado tu contraseña?.<span style="text-decoration: underline;"> Reestablecer contraseña</span></a>
+                    </div>
             
         </form>
         <!-- /end login form -->
