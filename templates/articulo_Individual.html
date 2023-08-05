@@ -15,7 +15,12 @@
 					<a href="author.html">
 
 						<!--ACA VA LA IMAGEN DEL POST -->
-						<img class="img-fluid img-thumb" src="{{ articulos.imagen.url }}" alt="">
+						{% if articulos.imagen  %}
+							<img src="{{ articulos.imagen.url }}" class="img-fluid img-thumb">
+						{% else %}
+							<img src="{% static '6.jpg' %}" class="img-fluid img-thumb">	
+						{% endif %}
+
 					</a>
 					<div class="card-block">
 						<h2 class="card-title"> {{ articulos.titulo | capfirst }}</h2>
