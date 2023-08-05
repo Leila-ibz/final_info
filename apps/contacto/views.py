@@ -19,9 +19,11 @@ class ContactoUsuario(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['request'] = self.request
+
         return context
 
     def form_valid(self, form):
+
         messages.success(self.request, 'CONSULTA ENVIADA CORRECTAMENTE.')
         return super().form_valid(form)
     
