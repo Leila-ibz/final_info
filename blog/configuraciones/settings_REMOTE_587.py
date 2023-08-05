@@ -23,18 +23,6 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'usuario.Usuario'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mail.info.final@gmail.com'
-EMAIL_HOST_PASSWORD = '36606297'
-
-SITE_NAME = 'Blog.Tivo'
-
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -117,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-ar'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 

@@ -2,12 +2,14 @@ from django.shortcuts import render
 from .forms import RegistroUsuarioForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth.models import Group
+
 # Create your views here.
 
 from django.contrib.messages import get_messages
@@ -23,7 +25,6 @@ class RegistrarUsuario(CreateView):
             pass
         messages.success(self.request, 'REGISTRO EXITOSO. POR FAVOR INICIA SESIÓN.')
         form.save()
-
         return redirect('app.usuario:login')
     
 
@@ -34,10 +35,6 @@ class LoginUsuario(LoginView):
     def get_success_url(self):
         # messages.success(self.request, 'INICIO DE SESIÓN EXITOSO. ¡BIENVENID@!')
         return reverse('app.posts:articulos') 
-    
-
-
-
     
 
 def login_view(request):

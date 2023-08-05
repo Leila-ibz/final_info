@@ -14,10 +14,10 @@ urlpatterns = [
     path('posts/', include('apps.posts.urls')),
     path('contacto/', include('apps.contacto.urls')),
     path('usuario/', include('apps.usuario.urls')),
-    
+    path('', include('django.contrib.auth.urls')),
 
     
-    # path('', include('django.contrib.auth.urls')),
+    
     # path('posts/', include('apps.posts.urls', namespace='crear_articulo')),
     path('quienessomos/', views.quienes_somos_view, name='quienes_somos')
 
