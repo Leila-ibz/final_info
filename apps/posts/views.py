@@ -3,13 +3,12 @@ from .models import Articulo, Comentario, Categoria
 from django.views import View
 from .forms import ArticuloForm
 from .forms import ComentarioForm, NuevaCategoriaForm
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView, RedirectView
 
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.views.generic import RedirectView
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -156,6 +155,18 @@ class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
     model = Categoria
     template_name = 'posts/categoria_confirm_delete.html'
     success_url = reverse_lazy('app.posts:categoria_list')
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'posts/modificar_post.html'
+    success_url = reverse_lazy('app.posts:posts')
+
+class PostDeleteView(DeleteView):
+    model = Articulo
+    template_name = 'posts/eliminar_post.html'
+    success_url = reverse_lazy('app.posts:posts')
 
 
 # -----------------------

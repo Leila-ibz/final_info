@@ -1,0 +1,20 @@
+
+{% block content %}
+
+
+<center>
+<div class="container-fluid" style="margin: 30px;">
+    <a id="boton_post"
+    href="{% url 'app.posts:crear_categoria' %}?next={% url 'app.posts:post_update' pk=object.id %}">Crear nueva categoria</a>
+    <br>
+    <h1>Modificar post</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar cambios" href="/articulos">
+    </form>
+</div>
+
+</center>
+
+{% endblock %}
