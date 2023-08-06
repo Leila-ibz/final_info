@@ -166,7 +166,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 class PostDeleteView(DeleteView):
     model = Articulo
     template_name = 'posts/eliminar_post.html'
-    success_url = reverse_lazy('app.posts:posts')
+    success_url = reverse_lazy('app.posts:articulos')
 
 
 # -----------------------
