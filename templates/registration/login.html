@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link href="{% static 'assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+<link href="{% static 'assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'assets/css2/style.css' %}">
+{% endblock styles %}
+
+
 {% block content %}
 
 {% comment %} ----------------------------------- {% endcomment %}
@@ -8,28 +16,42 @@
 <main class="login-body" data-vide-bg="{% static 'img/login-bg1.mp4' %}">
     <!-- Login Admin -->
     <form class="form-default" method="POST">
-        <div class="container login-form" style="max-width: 2000px !important; background-color: rgba(255, 255, 255, 0.5); padding: 90px; margin-top: 20px;">
+        <div class="container login-form"
+            style="max-width: 2000px !important; background-color: rgba(255, 255, 255, 0.5); padding: 90px; margin-top: 20px;">
             <!-- logo-login -->
             <div class="logo-login">
                 <a><img src="{% static 'img/escudo.jpg' %}" alt="" style="width: 200px; height: 200px;"></a>
             </div>
-            <br><br/>
-            <p><h2 style="color: black;">Iniciar Sesión:</h2><p>
-                   
+            <br><br />
+            <p>
+            <h2 style="color: black;">Iniciar Sesión:</h2>
+            <p>
+
                 {% csrf_token %}
-                <div class="container fluid">
-                  <table>{{ form }}</table>       
+            <div class="container fluid">
+                <table>{{ form }}</table>
                 <div class="form-input pt-30">
-                    <input type="submit" name="submit" value="Iniciar Sesión"></div>
-                        <a style="color: black;" href="{% url 'app.usuario:registrar' %}"> ¿Todavía no está registrado?.<span style="text-decoration: underline;"> Registrate</span></a>
-                    <br>
-                    <br>
-                    <a style="color: black;" href="{% url 'app.usuario:password_reset' %}"> ¿Olvidaste tu contraseña?.<span style="text-decoration: underline;"> Recuperar contraseña</span></a>
-                    </div>
-                        
-                        
-        </form>
-        <!-- /end login form -->
-    </main> 
-    {% endblock %}
-    
+                    <input type="submit" name="submit" value="Iniciar Sesión">
+                </div>
+                <a style="color: black;" href="{% url 'app.usuario:registrar' %}"> ¿Todavía no está registrado?.<span
+                        style="text-decoration: underline;"> Registrate</span></a>
+                <br>
+                <br>
+                <a style="color: black;" href="{% url 'app.usuario:password_reset' %}"> ¿Olvidaste tu contraseña?.<span
+                        style="text-decoration: underline;"> Recuperar contraseña</span></a>
+            </div>
+
+
+    </form>
+    <!-- /end login form -->
+</main>
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+<!-- Video bg -->
+<script src="{% static 'assets/js2/jquery.vide.js' %}"></script>
+{% endblock scripts %}

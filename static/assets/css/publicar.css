@@ -2,9 +2,9 @@
 *,
 ::after,
 ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 
@@ -75,7 +75,7 @@ div.custom-publicar-form-container form  {
 
 
     border: 2px solid #76c697;
-    border-top: none;
+    border-top: 3px;
     box-shadow: none;
     width: auto;
     /* right: auto; */
@@ -85,14 +85,14 @@ div.custom-publicar-form-container form  {
   
   /* Agrega los estilos para el menú desplegable */
 .form-select.custom-select::after {
-    display: inline-block;
-    margin-top: -10px; /* Ajusta esta distancia según sea necesario */
-    margin-left: 180px; /* Aumenta este valor para mover a la derecha */
-    vertical-align: middle;
-    content: "";
-    border-top: 0.4em solid;
-    border-right: 0.3em solid transparent;
-    border-left: 0.3em solid transparent;
+    display: inline-block !important;
+    margin-top: 100px; /* Ajusta esta distancia según sea necesario */
+    margin-left: 1800px; /* Aumenta este valor para mover a la derecha */
+    vertical-align: middle !important;
+    content: "" !important;
+    border-top: 0.400em solid !important;
+    border-right: 0.3999em solid transparent !important;
+    border-left: 0.3em solid transparent !important;
 }
 
 

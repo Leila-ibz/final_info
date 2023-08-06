@@ -22,6 +22,52 @@
 
 	{% endblock styles %}
 
+	<style>
+		.desplegable-personalizado {
+			position: relative;
+			display: inline-block;
+		}
+
+		.etiqueta-toggle {
+			display: block;
+			padding: 10px;
+			background-color: #f0f0f0;
+			border: none;
+			cursor: pointer;
+		}
+
+		.input-toggle {
+			display: none;
+		}
+
+		.lista-desplegable {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 150px;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			background-color: #ffffff;
+			border: 1px solid #cccccc;
+		}
+
+		.elemento-desplegable {
+			padding: 8px 12px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.elemento-desplegable:hover {
+			background-color: #f0f0f0;
+		}
+
+		.input-toggle:checked~.lista-desplegable {
+			display: block;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -55,50 +101,49 @@
 							<a class="nav-link" href="{% url 'app.posts:articulos' %}">Artículos</a>
 
 						</li>
-						{% if not user.is_authenticated %}
-							<li class="nav-item">
-								<a class="nav-link" href="{% url 'app.usuario:login' %}">Iniciar Sesión</a>
-							</li>
-						{% endif %}
+						
 
+						<li class="nav-item">
+							<div class="desplegable-personalizado">
+								<input type="checkbox" id="toggle-desplegable" class="input-toggle">
 
-						<li class="nav-item dropdown custom-dropdown">
-							<a class="nav-link dropdown-toggle custom-dropdown-toggle" data-toggle="dropdown">
-								{% if user.is_authenticated %}
-								<p class="custom-dropdown-text">Bienvenid@, {{ user.get_username }}.</p>
-								{% else %}
-								<p class="custom-dropdown-text">Bienvenid@ Inicia Sesión</p>
-								{% endif %}
-							</a>
-							<ul class="dropdown-menu custom-dropdown-menu">
-								<li>
-									<a class="dropdown-item">
-										<div class="custom-dropdown-content">
-											{% if user.is_authenticated %}
-											<form method="post" action="{% url 'app.usuario:logout' %}">
-												{% csrf_token %}
-												<button type="submit" class="custom-dropdown-button">Cerrar Sesión</button>
-											</form>
-											{% else %}
-											<a href="#" class="custom-dropdown-button">.</a>
-											{% endif %}
-										</div>
-									</a>
-								</li>
-							</ul>
+								<label for="toggle-desplegable" class="etiqueta-toggle">{% if user.is_authenticated %}
+									<p class="custom-dropdown-text">Bienvenid@, {{ user.get_username }}.</p>
+									{% else %}
+									<p class="custom-dropdown-text">Bienvenid@ Inicia Sesión</p>
+									{% endif %}
+								</label>
+								<ul class="lista-desplegable">
+									{% if user.is_authenticated %}
+									<li class="elemento-desplegable">
+										<form method="post" action="{% url 'app.usuario:logout' %}">
+											{% csrf_token %}
+											<button type="submit" class="custom-dropdown-button">Cerrar Sesión</button>
+										</form>
+									</li>
+									<li class="elemento-desplegable"><a href="#" class="custom-dropdown-button"> Editar perfil</a></li>
+
+									{% else %}
+										
+									<li class="elemento-desplegable"><a class="nav-link" href="{% url 'app.usuario:login' %}">Iniciar Sesión</a></li>
+									{% endif %}
+								</ul>
+							</div>
 						</li>
 						
-				
-		
+
+
 					</ul>
 					<!-- End Menu -->
 
 				</div>
 			</div>
 		</nav>
+
 		<!-- End Nav ================================================== -->
 	</header>
 	<main>
+
 
 		{% block content %}
 
@@ -108,6 +153,9 @@
 	<!-- Footer-->
 	<!-- Begin Footer
 	================================================== -->
+
+
+
 	<footer class="footer">
 		<p class="pull-left">
 			Copyright &copy; 2023 BlogTivo
@@ -144,7 +192,7 @@
 	<!-- Jquery Mobile Menu -->
 	<script src="{% static 'assets/js2/jquery.slicknav.min.js' %}"></script>
 
-	
+
 
 	<!-- Jquery Slick , Owl-Carousel Plugins -->
 	<script src="{% static 'assets/js2/owl.carousel.min.js' %}"></script>
@@ -156,7 +204,7 @@
 
 	<!-- Date Picker -->
 	<script src="{% static 'assets/js2/gijgo.min.js' %}"></script>
-	
+
 	<!-- Progress -->
 	<script src="{% static 'assets/js2/jquery.barfiller.js' %}"></script>
 
@@ -176,6 +224,11 @@
 	<!-- Jquery Plugins, main Jquery -->
 	<script src="{% static 'assets/js2/plugins.js' %}"></script>
 	<script src="{% static 'assets/js2/main.js' %}"></script>
+
+	{% block scripts %}
+
+	{% endblock scripts %}
+
 </body>
 
 </html>
