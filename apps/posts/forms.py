@@ -1,10 +1,37 @@
 from django import forms
 from .models import Articulo, Comentario, Categoria
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, ButtonHolder,Field
+
+# class ComentarioForm(forms.ModelForm):
+#     class Meta:
+#         model = Comentario
+#         fields = ['texto']
 
 class ComentarioForm(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ['texto']
+        widgets = {
+            # Ajusta el ancho
+            'texto': forms.Textarea(attrs={'rows': 6, 'style': 'width: 1200px;'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_class = 'container'
+        self.helper.layout = Layout(
+            Field('texto'),
+            ButtonHolder(
+                Submit('submit', 'Enviar comentario',
+                       css_class='btn btn-primary'),
+            )
+        )
+
+        self.fields['texto'].label = ''
+
 
 
 
