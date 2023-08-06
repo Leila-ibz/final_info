@@ -1,0 +1,13 @@
+<div class="container">
+ 
+{% block content %}
+  <h2>Eliminar Articulo</h2>
+  <p>¿Estás seguro de que deseas eliminar este artículo?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+  </form>
+  <a href="{% url 'app.posts:leer_articulo' id=articulo.id %}">Cancelar</a>
+{% endblock %}
+
+</div>

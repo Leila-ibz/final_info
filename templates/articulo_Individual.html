@@ -19,7 +19,7 @@
 						{% if articulos.imagen %}
 						<img src="{{ articulos.imagen.url }}" class="img-fluid img-thumb">
 						{% else %}
-							<img src="{% static 'default_articulo.jpg' %}" class="img-fluid img-thumb">	
+						<img src="{% static 'default_articulo.jpg' %}" class="img-fluid img-thumb">
 						{% endif %}
 
 					</a>
@@ -52,11 +52,12 @@
 								</span>
 								<span class="author-meta">
 									<span class="post-name"><a href="#">{{ articulos.autor.username }}</a></span><br />
-									<span class="post-date">{{ articulos.publicado | date:"d/m/Y"}} </span></span> <span class="post-read"></span>
-									
+									<span class="post-date">{{ articulos.publicado | date:"d/m/Y"}} </span></span> <span
+									class="post-read"></span>
+
 								<br>
 								<a target="_blank"
-									style="display: inline-block; padding: 5px 10px; background-color: #ccc; color: #000; text-decoration: none; border: none;">{{articulos.categoria.nombre }}</a>
+									style="display: inline-block; padding: 5px 10px; background-color: #ccc; color: #000; text-decoration: none; border: none;">{{articulos.categoria.nombre}}</a>
 								<!--<a class="btn follow float-left" style="font-size: 0.7rem;"> {{ articulos.categoria.nombre }}</a>-->
 								<br>
 							</div>
@@ -69,11 +70,7 @@
 						{% endif %}
 						{% if user.is_superuser %}
 						<div class="container-fluid" style="margin-top: 10px;">
-							<form method="post" action="{% url 'app.posts:post_delete' pk=articulos.id %}"
-								style="display: inline-block;">
-								{% csrf_token %}
-								<input class="btn btn-danger" type="submit" value="Eliminar Artículo" onclick="return confirm('¿Estás seguro de eliminar este artículo?')">
-							</form>
+							<a href="{% url 'app.posts:post_delete' pk=articulos.id %}" class="btn btn-danger">Eliminar Artículo</a>
 						</div>
 						{% endif %}
 					</div>
@@ -95,67 +92,59 @@
 			</section>
 
 			<!-- End Author Posts ================================================== -->
-			<center>
-				<div class="container-fluid" style="margin-bottom: 20px;"></div>
-				<div class="container-fluid" style="margin-bottom: 20px;"></div>
-				{% for comentario in articulos.comentarios.all %}
-				<table>{{ comentario.usuario }} - {{ comentario.fecha }}</table>
-				<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-					<p>{{ comentario.texto }}</p>
-					<br><br>
-				</ul>
-				{% empty %}
-				<li>No hay comentarios - Puedes ser el primero en comentar!</li>
-				{% endfor %}
+
 		</div>
-		<a id="comentario"></a>
-		<div class="container-fluid" style="margin-bottom: 100px">
-			<form method="POST" style="margin-bottom: 100px; margin-top: 100px;">
-				{% csrf_token %}
-			
-		<style>
-			.comment-container {
-				border: 1px solid #ccc; /* Bordes alrededor del comentario */
-				padding: 10px; /* Espacio interno del recuadro */
-				margin-bottom: 10px; /* Espacio entre los comentarios */
-			}
-		
-			.comment-options a {
-				display: inline-block;
-				margin-right: 10px;
-				color: #000; /* Color del texto para enlaces */
-				text-decoration: none;
-			}
-		
-			.comment-options a:hover {
-				text-decoration: underline; /* Subrayar enlace al pasar el cursor */
-			}
-		</style>
-		
-		<center>
-			<div class="container-fluid" style="margin-bottom: 20px;"></div>
-			<div class="container-fluid" style="margin-bottom: 20px;"></div>
-			{% for comentario in articulos.comentarios.all %}
-				<div class="comment-container">
-					<table>{{ comentario.usuario }} - {{ comentario.fecha }}</table>
-					<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-						<div class="comment-text">{{ comentario.texto }}</div>
-						<div class="comment-options">
-							{% if user.is_authenticated %}
-							{% if user == comentario.usuario %}
-							<a href="{{comentario.get_editar_link}}">Editar</a>
-							{% endif %}
-							{% if user == comentario.usuario or user == articulos.usuario %}
-							<a href="{{comentario.get_eliminar_link}}">Eliminar</a>
-							{% endif %}
-							{% endif %}
-						</div>
-					</ul>
+	</div>
+	<a id="comentario"></a>
+
+
+	<style>
+		.comment-container {
+			border: 1px solid #ccc;
+			/* Bordes alrededor del comentario */
+			padding: 10px;
+			/* Espacio interno del recuadro */
+			margin-bottom: 10px;
+			/* Espacio entre los comentarios */
+		}
+
+		.comment-options a {
+			display: inline-block;
+			margin-right: 10px;
+			color: #000;
+			/* Color del texto para enlaces */
+			text-decoration: none;
+		}
+
+		.comment-options a:hover {
+			text-decoration: underline;
+			/* Subrayar enlace al pasar el cursor */
+		}
+	</style>
+
+	<center>
+		<div class="container-fluid" style="margin-bottom: 20px;"></div>
+		{% for comentario in articulos.comentarios.all %}
+		<div class="comment-container container">
+			<table>{{ comentario.usuario }} - {{ comentario.fecha }}</table>
+			<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+				<div class="comment-text">{{ comentario.texto }}</div>
+				<div class="comment-options">
+					{% if user.is_authenticated %}
+					{% if user == comentario.usuario %}
+					<a href="{{comentario.get_editar_link}}">Editar</a>
+					{% endif %}
+					{% if user == comentario.usuario or user == articulos.usuario %}
+					<a href="{{comentario.get_eliminar_link}}">Eliminar</a>
+					{% endif %}
+					{% endif %}
 				</div>
-			{% empty %}
-				<p>No hay comentarios - ¡Puedes ser el primero en comentar!</p>
-			{% endfor %}
+			</ul>
 		</div>
+		{% empty %}
+		<p>No hay comentarios - ¡Puedes ser el primero en comentar!</p>
+		{% endfor %}
+
 		<a id="comentario"></a>
 		<div class="container-fluid" style="margin-bottom: 100px">
 			<form method="POST" style="margin-bottom: 100px; margin-top: 100px;">
@@ -168,12 +157,6 @@
 					{{ form.as_p }}
 					<input type="submit" value="Comentar">
 				</form>
-					<h2>Deja tu comentario</h2>
-					<form method="POST">
-						{% csrf_token %}
-						{{ form.as_p }}
-						<input type="submit" value="Comentar">
-					</form>
 				{% else %}
 				<h2>Debes iniciar sesion o registrarte para comentar</h2>
 				<a class="btn btn-success btn-lg"
@@ -182,41 +165,35 @@
 				{% endif %}
 			</form>
 		</div>
-					<h2>Debes iniciar sesión o registrarte para comentar</h2>
-					<a class="btn btn-success btn-lg" href="{% url 'app.usuario:login' %}?next={{ request.path }}#comentario">Iniciar Sesión</a>
-					<input type="hidden" name="next" value="{{ request.path }}">
-				{% endif %}
-			</form>
+	</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Begin AlertBar ================================================== -->
+	<div class="alertbar">
+		<div class="container text-center">
+			<img src="{% static 'img/logo.jpg' %}" alt="logo"> &nbsp; ¡Un compromiso verde en crecimiento te
+			espera! Mantente conectado con la naturaleza:<a href="{% url 'app.contacto:contacto' %}"
+				class="btn subscribe">Contactanos</a>
 		</div>
-		</center>
+	</div>
+	<!-- End AlertBar ================================================== -->
 
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- Begin AlertBar ================================================== -->
-		<div class="alertbar">
-			<div class="container text-center">
-				<img src="{% static 'img/logo.jpg' %}" alt="logo"> &nbsp; ¡Un compromiso verde en crecimiento te
-				espera! Mantente conectado con la naturaleza:<a href="{% url 'app.contacto:contacto' %}"
-					class="btn subscribe">Contactanos</a>
-			</div>
-		</div>
-		<!-- End AlertBar ================================================== -->
-
-		{% endblock %}
+	{% endblock %}

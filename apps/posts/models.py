@@ -53,9 +53,7 @@ class Articulo(models.Model):
     def delete(self, using=None, keep_parent=False):
         self.imagen.delete()
 
-        if self.avatar: 
-            self.avatar.delete()
-        super().delete()
+       
 
     
 
