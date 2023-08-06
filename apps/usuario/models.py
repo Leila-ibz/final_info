@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     imagen = models.ImageField(null=True, blank=True,upload_to='usuario', default='usuario/user-default.jpg')
-
+    autor = models.ForeignKey('usuario.Usuario', models.SET_NULL, null = True)
     def get_absolute_url(self):
         return reverse('index')
     

@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load colaborador_tags %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assets/css/categoria-styles.css' %}">
+{% endblock styles %}
+
+
+
 
 {% block content %}
 
@@ -136,9 +142,9 @@
 											}
 										</style>
 										<a href="{% url 'app.posts:leer_articulo' articulo.id %}"></a>
-										{% if articulo.avatar %}
+										{% if articulo.autor.imagen %}
 										<!-- Mostrar el avatar del artículo si existe -->
-										<img class="author-thumb" src="{{ articulo.avatar.url }}">
+										<img class="author-thumb" src="{{ articulo.autor.imagen.url }}">
 										{% else %}
 										<!-- Mostrar una imagen predeterminada si no hay avatar -->
 										<img class="author-thumb" src="{% static 'avatar.jpg' %}">
@@ -146,7 +152,7 @@
 
 									</span>
 									<span class="author-meta">
-										<span class="post-name"><a href="#">{{ articulo.nickname }}</a></span><br />
+										<span class="post-name"><a href="#">{{ articulo.autor.username }}</a></span><br />
 										<span class="post-date">{{ articulo.fecha_publicacion }}</span><span
 											class="dot"></span><span class="post-read"></span>
 									</span>

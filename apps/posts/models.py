@@ -4,6 +4,8 @@ import random
 import os
 from functools import partial
 from django.conf import settings
+from django.urls import reverse
+
 
 
 #Categoria:
@@ -31,10 +33,10 @@ class Articulo(models.Model):
     estado = models.BooleanField(default=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
     publicado = models.DateTimeField(default=timezone.now)
-    
+    autor = models.ForeignKey('usuario.Usuario', models.SET_NULL, null = True)
     # Nuevos campos
-    avatar = models.ImageField(null=True, blank=True, upload_to=get_random_avatar_filename, default=default_avatar)
-    nickname = models.CharField(max_length=30, default="Sin Nickname")
+    # avatar = models.ImageField(null=True, blank=True, upload_to=get_random_avatar_filename, default=default_avatar)
+    # nickname = models.CharField(max_length=30, default="Sin Nickname")
 
 
     class Meta:
@@ -72,3 +74,8 @@ class Comentario(models.Model):
     def __str__(self):
         return self.texto
     
+    def get_editar_link(self):
+        return reverse('app.posts:editar_comentario', args=[self.posts.pk, self.pk])
+
+    def get_eliminar_link(self):
+        return reverse('app.posts:eliminar_comentario', args=[self.posts.pk, self.pk])

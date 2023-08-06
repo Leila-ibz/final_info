@@ -11,45 +11,62 @@
 	<title>Blog&middot;Tivo</title>
 
 	<!-- Bootstrap core CSS -->
-	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
-	<!-- Fonts -->
-	<link href="{% static 'assets/css/awesome.min.css' %}" rel="stylesheet">
-	<link href="{% static 'assets/css/righteous.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
 	<!-- Custom styles for this template -->
 	<link href="{% static 'assets/css/mediumish.css' %}" rel="stylesheet">
-	<!--auxiliar-->
-	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/mediumish.css' %}">
-	<!--auxiliar2-->
-	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<!-- Google Web Fonts -->
-
-	<link href="{% static 'assets/css/swap.css' %}" rel="stylesheet">
-
-	<!-- Icon Font Stylesheet -->
-	<link href="{% static 'assets/css/css_all.min.css' %}" rel="stylesheet">
-	<link href="{% static 'assets/css/bootstrap-icons.css' %}" rel="stylesheet">
-	<!-- Libraries Stylesheet -->
-
-	<link href="{% static 'assets/lib/animate/animate.min.css' %}" rel="stylesheet">
-	<link href="{% static 'assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-
 	<!--Auxiliar -->
 	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom-styles.css' %}">
 
-	<link rel="stylesheet" href="{% static 'assets/css/categoria-styles.css' %}">
+	{% block styles %}
 
-	
-	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/publicar.css' %}">
-	
-	
-	<!-- Auxiliar  -->
-	<!-- <link rel="stylesheet" href="{% static 'assets/css2/bootstrap.min.css' %}"> 
-	<!-- <link rel="stylesheet" href="{% static 'assets/css2/animated-headline.css' %}"> -->
-	<link rel="stylesheet" href="{% static 'assets/css2/style.css' %}">
+	{% endblock styles %}
 
+	<style>
+		.desplegable-personalizado {
+			position: relative;
+			display: inline-block;
+		}
 
+		.etiqueta-toggle {
+			display: block;
+			padding: 10px;
+			background-color: #f0f0f0;
+			border: none;
+			cursor: pointer;
+		}
 
+		.input-toggle {
+			display: none;
+		}
+
+		.lista-desplegable {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 150px;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			background-color: #ffffff;
+			border: 1px solid #cccccc;
+		}
+
+		.elemento-desplegable {
+			padding: 8px 12px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.elemento-desplegable:hover {
+			background-color: #f0f0f0;
+		}
+
+		.input-toggle:checked~.lista-desplegable {
+			display: block;
+		}
+	</style>
 
 </head>
 
@@ -84,51 +101,49 @@
 							<a class="nav-link" href="{% url 'app.posts:articulos' %}">Artículos</a>
 
 						</li>
-						{% if not user.is_authenticated %}
-							<li class="nav-item">
-								<a class="nav-link" href="{% url 'app.usuario:login' %}">Iniciar Sesión</a>
-							</li>
-						{% endif %}
+						
 
+						<li class="nav-item">
+							<div class="desplegable-personalizado">
+								<input type="checkbox" id="toggle-desplegable" class="input-toggle">
 
-						<li class="nav-item dropdown custom-dropdown">
-							<a class="nav-link dropdown-toggle custom-dropdown-toggle" data-toggle="dropdown">
-								{% if user.is_authenticated %}
-								<p class="custom-dropdown-text">Bienvenid@, {{ user.get_username }}.</p>
-								{% else %}
-								<p class="custom-dropdown-text">Bienvenid@ Inicia Sesión</p>
-								{% endif %}
-							</a>
-							<ul class="dropdown-menu custom-dropdown-menu">
-								<li>
-									<a class="dropdown-item">
-										<div class="custom-dropdown-content">
-											{% if user.is_authenticated %}
-											<form method="post" action="{% url 'app.usuario:logout' %}">
-												{% csrf_token %}
-												<button type="submit" class="custom-dropdown-button">Cerrar Sesión</button>
-												<a href="#" class="custom-dropdown-button">Editar Pefil</a>
-											</form>
-											{% else %}
-											<a href="#" class="custom-dropdown-button">.</a>
-											{% endif %}
-										</div>
-									</a>
-								</li>
-							</ul>
+								<label for="toggle-desplegable" class="etiqueta-toggle">{% if user.is_authenticated %}
+									<p class="custom-dropdown-text">Bienvenid@, {{ user.get_username }}.</p>
+									{% else %}
+									<p class="custom-dropdown-text">Bienvenid@ Inicia Sesión</p>
+									{% endif %}
+								</label>
+								<ul class="lista-desplegable">
+									{% if user.is_authenticated %}
+									<li class="elemento-desplegable">
+										<form method="post" action="{% url 'app.usuario:logout' %}">
+											{% csrf_token %}
+											<button type="submit" class="custom-dropdown-button">Cerrar Sesión</button>
+										</form>
+									</li>
+									<li class="elemento-desplegable"><a href="#" class="custom-dropdown-button"> Editar perfil</a></li>
+
+									{% else %}
+										
+									<li class="elemento-desplegable"><a class="nav-link" href="{% url 'app.usuario:login' %}">Iniciar Sesión</a></li>
+									{% endif %}
+								</ul>
+							</div>
 						</li>
 						
-				
-		
+
+
 					</ul>
 					<!-- End Menu -->
 
 				</div>
 			</div>
 		</nav>
+
 		<!-- End Nav ================================================== -->
 	</header>
 	<main>
+
 
 		{% block content %}
 
@@ -138,6 +153,9 @@
 	<!-- Footer-->
 	<!-- Begin Footer
 	================================================== -->
+
+
+
 	<footer class="footer">
 		<p class="pull-left">
 			Copyright &copy; 2023 BlogTivo
@@ -174,8 +192,7 @@
 	<!-- Jquery Mobile Menu -->
 	<script src="{% static 'assets/js2/jquery.slicknav.min.js' %}"></script>
 
-	<!-- Video bg -->
-	<script src="{% static 'assets/js2/jquery.vide.js' %}"></script>
+
 
 	<!-- Jquery Slick , Owl-Carousel Plugins -->
 	<script src="{% static 'assets/js2/owl.carousel.min.js' %}"></script>
@@ -187,9 +204,7 @@
 
 	<!-- Date Picker -->
 	<script src="{% static 'assets/js2/gijgo.min.js' %}"></script>
-	<!-- Nice-select, sticky -->
-	<script src="{% static 'assets/js2/jquery.nice-select.min.js' %}"></script>
-	<script src="{% static 'assets/js2/jquery.sticky.js' %}"></script>
+
 	<!-- Progress -->
 	<script src="{% static 'assets/js2/jquery.barfiller.js' %}"></script>
 
@@ -209,6 +224,11 @@
 	<!-- Jquery Plugins, main Jquery -->
 	<script src="{% static 'assets/js2/plugins.js' %}"></script>
 	<script src="{% static 'assets/js2/main.js' %}"></script>
+
+	{% block scripts %}
+
+	{% endblock scripts %}
+
 </body>
 
 </html>

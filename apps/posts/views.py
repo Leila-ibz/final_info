@@ -93,6 +93,8 @@ def crear_articulo(request):
         return render(request, 'publicar.html', {'form' : form})       
 
 
+
+
 class PostDetailView(DetailView):
     model = Articulo
     template_name = "posts/articulo_individual.html"
@@ -172,26 +174,25 @@ class PostDeleteView(DeleteView):
 def editar_comentario(request, post_id, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)
     if not comentario.puede_editar(request.user):
-        return redirect('app.posts:postindividual', id=post_id)
+        return redirect('app.posts:leer_articulo', id=post_id)
     if request.method == 'POST':
         print('pasamos')
         form = ComentarioForm(request.POST, instance=comentario)
         if form.is_valid():
             form.save()
-            return redirect('app.posts:postindividual', id=post_id)
+            return redirect('app.posts:leer_articulo', id=post_id)
     else:
         form = ComentarioForm(instance=comentario)
     return render(request, 'editar_comentario.html', {'form': form, 'post_id': post_id})
    
 
 
-
 def eliminar_comentario(request, post_id, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)
     if not comentario.puede_eliminar(request.user):
-        return redirect('app.posts:postindividual', id=post_id)
+        return redirect('app.posts:leer_articulo', id=post_id)
     if request.method == 'POST':
         comentario.delete()
         
-        return redirect('apps.post:postindividual', id=post_id)
+        return redirect('app.posts:leer_articulo', id=post_id)
     return render(request, 'eliminar_comentario.html', {'comentario': comentario, 'post_id': post_id})

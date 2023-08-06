@@ -5,7 +5,7 @@ from .models import Categoria, Articulo, Comentario
 
 @admin.register(Articulo)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'resumen', 'contenido', 'fecha_publicacion', 'imagen', 'estado', 'categoria', 'publicado')
+    list_display = ('titulo', 'resumen', 'contenido', 'fecha_publicacion', 'imagen', 'autor' , 'estado', 'categoria', 'publicado')
 
 
 admin.site.register(Comentario)
