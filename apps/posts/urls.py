@@ -21,7 +21,9 @@ urlpatterns = [
     path('crear_articulo/', views.crear_articulo, name='crear_articulo'),
     path('articulos/categoria', CategoriaCreateView.as_view(), name= 'crear_categoria'),
     path('categoria/', CategoriaListView.as_view(), name='categoria_list'),
-    path('categoria/<int:pk>/delete', CategoriaDeleteView.as_view(), name='categoria_delete')
+    path('categoria/<int:pk>/delete', CategoriaDeleteView.as_view(), name='categoria_delete'),
+    path('posts/<int:pk>/modificar/',PostUpdateView.as_view(), name= 'post_update'),
+    path('posts/<int:pk>/eliminar/', PostDeleteView.as_view(), name='post_delete'),
     
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
