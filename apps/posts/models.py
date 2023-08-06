@@ -43,6 +43,11 @@ class Articulo(models.Model):
     def __str__(self):
         return self.titulo
     
+    def puede_editar(self, user):
+        return user.es_colaborador and user == self.usuario
+    def puede_eliminar(self, user):
+        return user.es_colaborador and user == self.usuario
+
     def delete(self, using=None, keep_parent=False):
         self.imagen.delete()
 
@@ -50,6 +55,7 @@ class Articulo(models.Model):
             self.avatar.delete()
         super().delete()
 
+    
 
 class Comentario(models.Model):
     posts = models.ForeignKey(Articulo, on_delete=models.CASCADE, related_name='comentarios')
@@ -62,8 +68,7 @@ class Comentario(models.Model):
 
     def puede_eliminar(self, user):
         return (user == self.usuario) or (self.posts.usuario == user)
-
+    
     def __str__(self):
         return self.texto
     
-
