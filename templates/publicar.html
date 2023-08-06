@@ -1,8 +1,19 @@
-
+{% extends 'base.html' %}
 {% load static %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Publicar</button>
-</form>
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assets/css/categoria-styles.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<div class="container">
+    <p>¿Eres colaborador? Deja tu eco-huella en el mundo, comparte tu voz en un artículo:</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success" type="submit">Publicar</button>
+    </form>
+</div>
+{% endblock content %}

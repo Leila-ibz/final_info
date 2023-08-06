@@ -24,20 +24,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   /* Estilos para el botón de envío */
   div.custom-publicar-form-container button[type="submit"] {
@@ -110,36 +96,3 @@ div.custom-publicar-form-container form  {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  border: 2px solid #ccc;
-  padding: 10px 20px;
-  cursor: pointer;
-  height: 50px; /* Ajusta la altura según sea necesario */
-  font-size: 18px;

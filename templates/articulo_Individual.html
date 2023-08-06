@@ -18,7 +18,7 @@
 						{% if articulos.imagen  %}
 							<img src="{{ articulos.imagen.url }}" class="img-fluid img-thumb">
 						{% else %}
-							<img src="{% static '6.jpg' %}" class="img-fluid img-thumb">	
+							<img src="{% static 'default_articulo.jpg' %}" class="img-fluid img-thumb">	
 						{% endif %}
 
 					</a>
@@ -41,9 +41,9 @@
 										}
 									</style>
 
-									{% if articulo.avatar %}
+									{% if articulos.autor.imagen %}
 									<!-- Mostrar el avatar del artículo si existe -->
-									<img class="author-thumb" src="{{ articulo.avatar.url }}">
+									<img class="author-thumb" src="{{ articulos.autor.imagen.url }}">
 									{% else %}
 									<!-- Mostrar una imagen predeterminada si no hay avatar -->
 									<img class="author-thumb" src="{% static 'avatar.jpg' %}">
@@ -51,7 +51,7 @@
 
 								</span>
 								<span class="author-meta">
-									<span class="post-name"><a href="author.html">{{ articulos.nickname }}</a></span><br />
+									<span class="post-name"><a href="#">{{ articulos.autor.username }}</a></span><br />
 									<span class="post-date">{{ articulos.publicado | date:"d/m/Y"}} </span></span> <span class="post-read"></span>
 									
 								<br>
@@ -118,10 +118,10 @@
 						<div class="comment-options">
 							{% if user.is_authenticated %}
 							{% if user == comentario.usuario %}
-							<a href="#">Editar</a>
+							<a href="{{comentario.get_editar_link}}">Editar</a>
 							{% endif %}
 							{% if user == comentario.usuario or user == articulos.usuario %}
-							<a href="#">Eliminar</a>
+							<a href="{{comentario.get_eliminar_link}}">Eliminar</a>
 							{% endif %}
 							{% endif %}
 						</div>
