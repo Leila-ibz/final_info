@@ -14,6 +14,8 @@ from django.views.generic import RedirectView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.shortcuts import get_object_or_404
+
 # Create your views here.
 #asd
 
@@ -157,3 +159,31 @@ class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('app.posts:categoria_list')
 
 
+# -----------------------
+
+def editar_comentario(request, post_id, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    if not comentario.puede_editar(request.user):
+        return redirect('app.posts:postindividual', id=post_id)
+    if request.method == 'POST':
+        print('pasamos')
+        form = ComentarioForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            return redirect('app.posts:postindividual', id=post_id)
+    else:
+        form = ComentarioForm(instance=comentario)
+    return render(request, 'editar_comentario.html', {'form': form, 'post_id': post_id})
+   
+
+
+
+def eliminar_comentario(request, post_id, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    if not comentario.puede_eliminar(request.user):
+        return redirect('app.posts:postindividual', id=post_id)
+    if request.method == 'POST':
+        comentario.delete()
+        
+        return redirect('apps.post:postindividual', id=post_id)
+    return render(request, 'eliminar_comentario.html', {'comentario': comentario, 'post_id': post_id})

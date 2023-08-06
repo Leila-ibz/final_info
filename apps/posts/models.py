@@ -57,5 +57,13 @@ class Comentario(models.Model):
     texto = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
 
+    def puede_editar(self, user):
+        return  user == self.usuario
+
+    def puede_eliminar(self, user):
+        return (user == self.usuario) or (self.posts.usuario == user)
+
     def __str__(self):
         return self.texto
+    
+
